@@ -1014,25 +1014,6 @@ function fireCelebration(){
 }
 
 // ── SEND WISHES ──
-function sendWishes(){
-  fireCelebration();
-  const msg=document.getElementById('wish-msg');
-  msg.style.display='block';
-  // Spawn floating hearts
-  for(let i=0;i<12;i++){
-    setTimeout(()=>{
-      const h=document.createElement('div');
-      h.className='music-note';
-      h.textContent=['💜','🌸','💖','⭐','🎉'][Math.floor(Math.random()*5)];
-      h.style.left=(10+Math.random()*80)+'%';
-      h.style.bottom='60px';
-      h.style.animationDuration=(2+Math.random()*2)+'s';
-      h.style.fontSize=(1.5+Math.random())+'rem';
-      document.body.appendChild(h);
-      setTimeout(()=>h.remove(),4000);
-    },i*120);
-  }
-}
 
 // ── INITIAL LOAD CONFETTI ──
 window.addEventListener('load',()=>{
