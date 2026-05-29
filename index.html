@@ -625,15 +625,25 @@ footer{
 </head>
 <body>
 
-<audio id="bgMusic" loop hidden>
-  <source src="music.mp3" type="audio/mpeg">
-</audio>
+
 
 <canvas id="confetti-canvas"></canvas>
 
-<script>
-document.addEventListener('click', function () {
-  document.getElementById('bgMusic').play();
+<audio id="heroMusic" loop hidden>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<audio id="aboutMusic" loop hidden>
+  <source src="about.mp3" type="audio/mpeg">
+</audio>
+
+<audio id="specialMusic" loop hidden>
+  <source src="special.mp3" type="audio/mpeg">
+</audio>
+
+<audio id="letterMusic" loop hidden>
+  <source src="letter.mp3" type="audio/mpeg">
+</audio>
 }, { once: true });
 </script>
 
@@ -1004,6 +1014,51 @@ window.addEventListener('load',()=>{
   setTimeout(()=>launchConfetti(180),600);
   setTimeout(()=>launchConfetti(120),1400);
 });
+  const heroMusic = document.getElementById("heroMusic");
+const aboutMusic = document.getElementById("aboutMusic");
+const specialMusic = document.getElementById("specialMusic");
+const letterMusic = document.getElementById("letterMusic");
+
+function stopAllMusic() {
+  [heroMusic, aboutMusic, specialMusic, letterMusic].forEach(audio => {
+    audio.pause();
+    audio.currentTime = 0;
+  });
+}
+
+// First tap starts birthday music
+document.addEventListener('click', () => {
+  heroMusic.play();
+}, { once: true });
+
+const musicObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+
+    stopAllMusic();
+
+    if (entry.target.id === "hero") {
+      heroMusic.play();
+    }
+
+    if (entry.target.id === "about") {
+      aboutMusic.play();
+    }
+
+    if (entry.target.id === "reasons") {
+      specialMusic.play();
+    }
+
+    if (entry.target.id === "letter") {
+      letterMusic.play();
+    }
+  });
+}, { threshold: 0.5 });
+
+musicObserver.observe(document.getElementById("hero"));
+musicObserver.observe(document.getElementById("about"));
+musicObserver.observe(document.getElementById("reasons"));
+musicObserver.observe(document.getElementById("letter"));
 </script>
 </body>
 </html>
