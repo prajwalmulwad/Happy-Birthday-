@@ -1027,39 +1027,30 @@ document.addEventListener('click', () => {
   heroMusic.play();
 }, { once: true });
 
-const musicObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (!entry.isIntersecting) return;
+window.addEventListener("scroll", () => {
+  const scrollY = window.scrollY;
 
-    stopAllMusic();
+  const about = document.getElementById("about").offsetTop - 150;
+  const reasons = document.getElementById("reasons").offsetTop - 150;
+  const letter = document.getElementById("letter").offsetTop - 150;
 
-    if (entry.target.id === "hero") {
-      heroMusic.currentTime = 0;
-      heroMusic.play().catch(()=>{});
-    }
+  stopAllMusic();
 
-    if (entry.target.id === "about") {
-      aboutMusic.currentTime = 0;
-      aboutMusic.play().catch(()=>{});
-    }
-
-    if (entry.target.id === "reasons") {
-      specialMusic.currentTime = 0;
-      specialMusic.play().catch(()=>{});
-    }
-
-    if (entry.target.id === "letter") {
-      letterMusic.currentTime = 0;
-      letterMusic.play().catch(()=>{});
-    }
-  });
-}, { threshold: 0.2 });
+  if (scrollY >= letter) {
+    letterMusic.play().catch(()=>{});
+  }
+  else if (scrollY >= reasons) {
+    specialMusic.play().catch(()=>{});
+  }
+  else if (scrollY >= about) {
+    aboutMusic.play().catch(()=>{});
+  }
+  else {
+    heroMusic.play().catch(()=>{});
+  }
+});
 
 
-musicObserver.observe(document.getElementById("hero"));
-musicObserver.observe(document.getElementById("about"));
-musicObserver.observe(document.getElementById("reasons"));
-musicObserver.observe(document.getElementById("letter"));
 </script>
 </body>
 </html>
