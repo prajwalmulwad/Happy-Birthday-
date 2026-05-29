@@ -644,10 +644,6 @@ footer{
 <audio id="letterMusic" loop hidden>
   <source src="letter.mp3" type="audio/mpeg">
 </audio>
-}, { once: true });
-</script>
-
-<div class="particles" id="particles"></div>
 
 <!-- ── NAV ── -->
 <nav>
@@ -1038,22 +1034,27 @@ const musicObserver = new IntersectionObserver((entries) => {
     stopAllMusic();
 
     if (entry.target.id === "hero") {
-      heroMusic.play();
+      heroMusic.currentTime = 0;
+      heroMusic.play().catch(()=>{});
     }
 
     if (entry.target.id === "about") {
-      aboutMusic.play();
+      aboutMusic.currentTime = 0;
+      aboutMusic.play().catch(()=>{});
     }
 
     if (entry.target.id === "reasons") {
-      specialMusic.play();
+      specialMusic.currentTime = 0;
+      specialMusic.play().catch(()=>{});
     }
 
     if (entry.target.id === "letter") {
-      letterMusic.play();
+      letterMusic.currentTime = 0;
+      letterMusic.play().catch(()=>{});
     }
   });
-}, { threshold: 0.5 });
+}, { threshold: 0.2 });
+
 
 musicObserver.observe(document.getElementById("hero"));
 musicObserver.observe(document.getElementById("about"));
