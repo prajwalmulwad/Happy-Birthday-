@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Shreya 🎂✨</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500&family=Satisfy&display=swap" rel="stylesheet">
+<style>
+:root{
+  --lavender:#c9b1e8;
+  --lavender-light:#ede5f8;
+  --lavender-dark:#9b72cf;
+  --pink:#f5a7c7;
+  --pink-light:#fde8f2;
+  --pink-dark:#e06fa0;
+  --gold:#d4a843;
+  --gold-light:#f7e8b0;
+  --gold-glow:#ffe066;
+  --white:#ffffff;
+  --offwhite:#fdf8ff;
+  --text-dark:#2d1b4e;
+  --text-mid:#6b4a8a;
+  --text-soft:#a07bc0;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+
+html{scroll-behavior:smooth;}
+
+body{
+  font-family:'DM Sans',sans-serif;
+  background:var(--offwhite);
+  color:var(--text-dark);
+  overflow-x:hidden;
+}
+
+/* ── CANVAS CONFETTI ── */
+#confetti-canvas{
+  position:fixed;top:0;left:0;
+  width:100%;height:100%;
+  pointer-events:none;
+  z-index:1000;
+}
+
+/* ── FLOATING PARTICLES ── */
+.particles{
+  position:fixed;top:0;left:0;
+  width:100%;height:100%;
+  pointer-events:none;
+  z-index:1;
+  overflow:hidden;
+}
+.particle{
+  position:absolute;
+  font-size:1.2rem;
+  animation:floatUp linear infinite;
+  opacity:0;
+}
+@keyframes floatUp{
+  0%{transform:translateY(100vh) rotate(0deg) scale(0.5);opacity:0;}
+  10%{opacity:0.8;}
+  90%{opacity:0.6;}
+  100%{transform:translateY(-60px) rotate(720deg) scale(1.2);opacity:0;}
+}
+
+/* ── NAVBAR ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  padding:14px 24px;
+  background:rgba(255,255,255,0.85);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(201,177,232,0.3);
+  display:flex;align-items:center;justify-content:space-between;
+}
+.nav-logo{
+  font-family:'Satisfy',cursive;
+  font-size:1.4rem;
+  color:var(--lavender-dark);
+  letter-spacing:1px;
+}
+.nav-links{display:flex;gap:20px;}
+.nav-links a{
+  font-size:0.82rem;
+  font-weight:500;
+  color:var(--text-mid);
+  text-decoration:none;
+  letter-spacing:0.5px;
+  transition:color 0.2s;
+}
+.nav-links a:hover{color:var(--lavender-dark);}
+
+/* ── HERO ── */
+#hero{
+  min-height:100vh;
+  position:relative;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;
+  padding:100px 24px 60px;
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 10%, rgba(237,229,248,0.9) 0%, transparent 60%),
+    radial-gradient(ellipse 70% 50% at 80% 80%, rgba(253,232,242,0.9) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 60% 20%, rgba(247,232,176,0.4) 0%, transparent 50%),
+    var(--offwhite);
+  overflow:hidden;
+}
+
+.hero-sparkles{
+  position:absolute;inset:0;pointer-events:none;overflow:hidden;
+}
+.sparkle{
+  position:absolute;
+  width:6px;height:6px;
+  border-radius:50%;
+  background:var(--gold-glow);
+  animation:sparkle-anim ease-in-out infinite;
+}
+@keyframes sparkle-anim{
+  0%,100%{transform:scale(0) rotate(0deg);opacity:0;}
+  50%{transform:scale(1) rotate(180deg);opacity:1;}
+}
+
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:linear-gradient(135deg,rgba(201,177,232,0.3),rgba(245,167,199,0.3));
+  border:1px solid rgba(201,177,232,0.5);
+  border-radius:999px;
+  padding:8px 20px;
+  font-size:0.78rem;
+  font-weight:500;
+  color:var(--text-mid);
+  letter-spacing:2px;
+  text-transform:uppercase;
+  margin-bottom:28px;
+  animation:fadeInDown 1s ease both;
+}
+
+.hero-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(3rem,10vw,7.5rem);
+  font-weight:900;
+  line-height:1.0;
+  background:linear-gradient(135deg,var(--lavender-dark) 0%,var(--pink-dark) 50%,var(--gold) 100%);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+  margin-bottom:10px;
+  animation:fadeInDown 1s 0.2s ease both;
+  opacity:0;
+}
+
+.hero-name{
+  font-family:'Satisfy',cursive;
+  font-size:clamp(2.5rem,8vw,6rem);
+  color:var(--lavender-dark);
+  text-shadow:0 0 30px rgba(155,114,207,0.4),0 0 60px rgba(155,114,207,0.2);
+  margin-bottom:28px;
+  animation:fadeInDown 1s 0.4s ease both;
+  opacity:0;
+}
+
+.hero-subtitle{
+  font-size:clamp(0.95rem,2.5vw,1.2rem);
+  color:var(--text-mid);
+  font-style:italic;
+  max-width:600px;
+  line-height:1.7;
+  margin-bottom:44px;
+  animation:fadeInDown 1s 0.6s ease both;
+  opacity:0;
+}
+
+.hero-cake{
+  font-size:5rem;
+  display:block;
+  margin-bottom:36px;
+  animation:cakePulse 2s ease-in-out infinite, fadeInDown 1s 0.5s ease both;
+  opacity:0;
+  filter:drop-shadow(0 0 20px rgba(212,168,67,0.6));
+}
+@keyframes cakePulse{
+  0%,100%{transform:scale(1) rotate(-2deg);}
+  50%{transform:scale(1.08) rotate(2deg);}
+}
+
+.btn-celebrate{
+  display:inline-flex;align-items:center;gap:10px;
+  background:linear-gradient(135deg,var(--lavender-dark),var(--pink-dark));
+  color:white;
+  font-family:'DM Sans',sans-serif;
+  font-size:1rem;
+  font-weight:500;
+  padding:16px 40px;
+  border-radius:999px;
+  border:none;cursor:pointer;
+  text-decoration:none;
+  box-shadow:0 8px 32px rgba(155,114,207,0.4),0 2px 8px rgba(0,0,0,0.1);
+  transition:transform 0.2s,box-shadow 0.2s;
+  animation:fadeInDown 1s 0.8s ease both;
+  opacity:0;
+  position:relative;
+  overflow:hidden;
+}
+.btn-celebrate::before{
+  content:'';
+  position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(255,255,255,0.2),transparent);
+  border-radius:999px;
+}
+.btn-celebrate:hover{
+  transform:translateY(-3px) scale(1.04);
+  box-shadow:0 14px 40px rgba(155,114,207,0.5);
+}
+.btn-celebrate:active{transform:scale(0.97);}
+
+.hero-countdown{
+  margin-top:44px;
+  animation:fadeInDown 1s 1s ease both;
+  opacity:0;
+}
+.countdown-label{
+  font-size:0.75rem;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  color:var(--text-soft);
+  margin-bottom:12px;
+}
+.countdown-timer{
+  display:flex;gap:16px;justify-content:center;flex-wrap:wrap;
+}
+.countdown-unit{
+  text-align:center;
+  background:rgba(255,255,255,0.8);
+  border:1px solid rgba(201,177,232,0.4);
+  border-radius:16px;
+  padding:14px 18px;
+  min-width:72px;
+  backdrop-filter:blur(8px);
+}
+.countdown-num{
+  font-family:'Playfair Display',serif;
+  font-size:1.8rem;
+  font-weight:700;
+  color:var(--lavender-dark);
+  display:block;
+  line-height:1;
+}
+.countdown-sub{
+  font-size:0.65rem;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--text-soft);
+  margin-top:4px;
+  display:block;
+}
+
+/* ── SECTION COMMON ── */
+section{padding:90px 24px;}
+.section-label{
+  display:inline-block;
+  font-size:0.72rem;
+  letter-spacing:4px;
+  text-transform:uppercase;
+  color:var(--lavender-dark);
+  margin-bottom:12px;
+  font-weight:500;
+}
+.section-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(1.8rem,5vw,3rem);
+  font-weight:700;
+  color:var(--text-dark);
+  margin-bottom:12px;
+  line-height:1.2;
+}
+.section-title span{
+  background:linear-gradient(135deg,var(--lavender-dark),var(--pink-dark));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.section-sub{
+  font-size:1rem;
+  color:var(--text-soft);
+  margin-bottom:52px;
+  line-height:1.6;
+  max-width:520px;
+  margin-left:auto;margin-right:auto;
+}
+.section-head{text-align:center;}
+
+/* ── ABOUT CARDS ── */
+#about{
+  background:
+    radial-gradient(ellipse 60% 40% at 90% 50%, rgba(253,232,242,0.7) 0%, transparent 60%),
+    var(--offwhite);
+}
+.cards-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:20px;
+  max-width:1000px;
+  margin:0 auto;
+}
+.about-card{
+  background:rgba(255,255,255,0.85);
+  border:1px solid rgba(201,177,232,0.3);
+  border-radius:24px;
+  padding:32px 24px;
+  text-align:center;
+  backdrop-filter:blur(12px);
+  box-shadow:0 4px 24px rgba(155,114,207,0.08);
+  transition:transform 0.3s,box-shadow 0.3s,border-color 0.3s;
+  cursor:default;
+  position:relative;
+  overflow:hidden;
+}
+.about-card::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(135deg,rgba(237,229,248,0.4),rgba(253,232,242,0.4));
+  border-radius:24px;
+  opacity:0;
+  transition:opacity 0.3s;
+}
+.about-card:hover{
+  transform:translateY(-8px) scale(1.02);
+  box-shadow:0 16px 48px rgba(155,114,207,0.18);
+  border-color:rgba(201,177,232,0.6);
+}
+.about-card:hover::before{opacity:1;}
+.card-emoji{font-size:3rem;display:block;margin-bottom:16px;filter:drop-shadow(0 4px 8px rgba(155,114,207,0.3));}
+.card-title{
+  font-family:'Playfair Display',serif;
+  font-size:1.15rem;font-weight:700;
+  color:var(--text-dark);margin-bottom:8px;
+}
+.card-desc{font-size:0.88rem;color:var(--text-soft);line-height:1.6;}
+.card-tag{
+  display:inline-block;
+  margin-top:12px;
+  background:linear-gradient(135deg,rgba(201,177,232,0.25),rgba(245,167,199,0.25));
+  border:1px solid rgba(201,177,232,0.4);
+  border-radius:999px;
+  padding:4px 14px;
+  font-size:0.72rem;
+  font-weight:500;
+  color:var(--lavender-dark);
+  letter-spacing:1px;
+}
+
+/* ── REASONS ── */
+#reasons{
+  background:
+    radial-gradient(ellipse 70% 50% at 10% 60%, rgba(237,229,248,0.6) 0%, transparent 60%),
+    linear-gradient(180deg,var(--offwhite),#faf5ff);
+}
+.reasons-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:18px;
+  max-width:960px;
+  margin:0 auto;
+}
+.reason-card{
+  display:flex;align-items:flex-start;gap:16px;
+  background:rgba(255,255,255,0.9);
+  border:1px solid rgba(245,167,199,0.3);
+  border-radius:20px;
+  padding:24px 22px;
+  transition:transform 0.25s,box-shadow 0.25s;
+}
+.reason-card:hover{transform:translateY(-4px);box-shadow:0 12px 36px rgba(224,111,160,0.12);}
+.reason-num{
+  flex-shrink:0;
+  width:36px;height:36px;
+  border-radius:50%;
+  background:linear-gradient(135deg,var(--lavender),var(--pink));
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Playfair Display',serif;
+  font-weight:700;font-size:0.9rem;
+  color:white;
+}
+.reason-text{font-size:0.92rem;color:var(--text-dark);line-height:1.6;padding-top:6px;}
+.reason-text strong{color:var(--lavender-dark);display:block;font-size:0.95rem;margin-bottom:4px;}
+
+/* ── MEMORY WALL ── */
+#memories{
+  background:
+    radial-gradient(ellipse 60% 50% at 80% 20%, rgba(247,232,176,0.3) 0%, transparent 60%),
+    var(--offwhite);
+}
+.timeline{
+  max-width:700px;
+  margin:0 auto;
+  position:relative;
+  padding-left:32px;
+}
+.timeline::before{
+  content:'';
+  position:absolute;left:8px;top:0;bottom:0;
+  width:2px;
+  background:linear-gradient(to bottom,var(--lavender),var(--pink),var(--gold));
+  border-radius:2px;
+}
+.timeline-item{
+  position:relative;
+  margin-bottom:36px;
+  animation:fadeInLeft 0.7s ease both;
+}
+.timeline-item::before{
+  content:'';
+  position:absolute;
+  left:-28px;top:18px;
+  width:12px;height:12px;
+  border-radius:50%;
+  background:linear-gradient(135deg,var(--lavender-dark),var(--pink-dark));
+  border:2px solid white;
+  box-shadow:0 0 0 3px rgba(155,114,207,0.25);
+}
+.timeline-card{
+  background:rgba(255,255,255,0.9);
+  border:1px solid rgba(201,177,232,0.3);
+  border-radius:20px;
+  padding:24px 28px;
+  box-shadow:0 4px 20px rgba(155,114,207,0.07);
+  transition:transform 0.25s;
+}
+.timeline-card:hover{transform:translateX(6px);}
+.timeline-emoji{font-size:1.5rem;margin-bottom:8px;display:block;}
+.timeline-quote{
+  font-family:'Playfair Display',serif;
+  font-size:1.05rem;
+  font-style:italic;
+  color:var(--text-dark);
+  line-height:1.7;
+}
+.timeline-year{
+  margin-top:10px;
+  font-size:0.72rem;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--text-soft);
+}
+
+/* ── LETTER ── */
+#letter{
+  background:linear-gradient(135deg,rgba(237,229,248,0.6) 0%,rgba(253,232,242,0.6) 100%);
+}
+.letter-wrap{
+  max-width:680px;
+  margin:0 auto;
+  background:rgba(255,255,255,0.92);
+  border:1px solid rgba(201,177,232,0.4);
+  border-radius:32px;
+  padding:clamp(32px,6vw,60px);
+  box-shadow:
+    0 0 0 6px rgba(237,229,248,0.5),
+    0 20px 60px rgba(155,114,207,0.12);
+  position:relative;
+  overflow:hidden;
+}
+.letter-wrap::before{
+  content:'✦';
+  position:absolute;
+  top:-20px;right:30px;
+  font-size:8rem;
+  color:rgba(201,177,232,0.1);
+  font-family:'Playfair Display',serif;
+}
+.letter-salutation{
+  font-family:'Satisfy',cursive;
+  font-size:1.8rem;
+  color:var(--lavender-dark);
+  margin-bottom:20px;
+  display:block;
+}
+.letter-body{
+  font-size:1rem;
+  color:var(--text-dark);
+  line-height:1.85;
+}
+.letter-body p{margin-bottom:16px;}
+.letter-body .highlight{
+  background:linear-gradient(135deg,var(--lavender-dark),var(--pink-dark));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+  font-weight:600;
+}
+.letter-sign{
+  font-family:'Satisfy',cursive;
+  font-size:1.4rem;
+  color:var(--pink-dark);
+  display:block;
+  margin-top:24px;
+}
+.letter-heart{
+  font-size:2.5rem;
+  display:block;
+  text-align:right;
+  filter:drop-shadow(0 4px 8px rgba(224,111,160,0.4));
+  animation:heartBeat 1.4s ease-in-out infinite;
+}
+@keyframes heartBeat{
+  0%,100%{transform:scale(1);}
+  14%{transform:scale(1.12);}
+  28%{transform:scale(1);}
+  42%{transform:scale(1.06);}
+}
+
+/* ── WISH SECTION ── */
+#wish{
+  background:var(--offwhite);
+  text-align:center;
+}
+.wish-btn{
+  display:inline-flex;align-items:center;gap:10px;
+  background:linear-gradient(135deg,var(--pink-dark),var(--lavender-dark));
+  color:white;
+  font-size:1rem;
+  font-weight:500;
+  padding:18px 44px;
+  border-radius:999px;
+  border:none;cursor:pointer;
+  box-shadow:0 8px 32px rgba(224,111,160,0.35);
+  transition:transform 0.2s,box-shadow 0.2s;
+  font-family:'DM Sans',sans-serif;
+  position:relative;overflow:hidden;
+}
+.wish-btn::after{
+  content:'';
+  position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(255,255,255,0.15),transparent);
+}
+.wish-btn:hover{transform:translateY(-3px);box-shadow:0 14px 40px rgba(224,111,160,0.45);}
+.wish-msg{
+  display:none;
+  margin-top:28px;
+  font-family:'Satisfy',cursive;
+  font-size:1.6rem;
+  color:var(--lavender-dark);
+  animation:fadeInDown 0.6s ease;
+}
+.wish-emojis{font-size:2rem;letter-spacing:8px;display:block;margin-top:8px;}
+
+/* ── FOOTER ── */
+footer{
+  background:linear-gradient(135deg,#1a0a2e,#2d1b4e);
+  color:white;
+  text-align:center;
+  padding:52px 24px;
+}
+.footer-made{
+  font-family:'Satisfy',cursive;
+  font-size:1.4rem;
+  margin-bottom:12px;
+  color:var(--gold-light);
+}
+.footer-tagline{
+  font-size:0.9rem;
+  color:rgba(255,255,255,0.55);
+  letter-spacing:1px;
+  line-height:1.7;
+}
+.footer-emojis{font-size:1.8rem;letter-spacing:6px;display:block;margin-top:16px;}
+.footer-hearts{
+  display:flex;justify-content:center;gap:12px;
+  margin-top:24px;
+}
+.footer-hearts span{
+  width:10px;height:10px;
+  border-radius:50%;
+  display:inline-block;
+}
+
+/* ── REVEAL ANIMATION ── */
+.reveal{
+  opacity:0;
+  transform:translateY(40px);
+  transition:opacity 0.7s ease,transform 0.7s ease;
+}
+.reveal.visible{
+  opacity:1;
+  transform:translateY(0);
+}
+
+@keyframes fadeInDown{
+  from{transform:translateY(-30px);opacity:0;}
+  to{transform:translateY(0);opacity:1;}
+}
+@keyframes fadeInLeft{
+  from{transform:translateX(-30px);opacity:0;}
+  to{transform:translateX(0);opacity:1;}
+}
+
+/* ── MUSIC NOTES ANIM ── */
+.music-note{
+  position:fixed;
+  font-size:1.4rem;
+  pointer-events:none;
+  animation:musicFloat linear both;
+  opacity:0;
+  z-index:2;
+}
+@keyframes musicFloat{
+  0%{opacity:0;transform:translateY(0) rotate(-10deg) scale(0.5);}
+  15%{opacity:0.8;}
+  85%{opacity:0.6;}
+  100%{opacity:0;transform:translateY(-240px) rotate(20deg) scale(1.2);}
+}
+
+/* ── RESPONSIVE ── */
+@media(max-width:640px){
+  nav .nav-links{display:none;}
+  .cards-grid{grid-template-columns:1fr 1fr;}
+  .reasons-grid{grid-template-columns:1fr;}
+  .timeline{padding-left:24px;}
+}
+@media(max-width:400px){
+  .cards-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<canvas id="confetti-canvas"></canvas>
+
+<div class="particles" id="particles"></div>
+
+<!-- ── NAV ── -->
+<nav>
+  <span class="nav-logo">✨ Shreya</span>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#reasons">Why Special</a>
+    <a href="#memories">Memories</a>
+    <a href="#letter">Letter</a>
+    <a href="#wish">Wish Her</a>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section id="hero">
+  <div class="hero-sparkles" id="sparkles-container"></div>
+
+  <div class="hero-badge">🎉 &nbsp; A very special day &nbsp; 🎉</div>
+
+  <h1 class="hero-title">Happy Birthday</h1>
+  <div class="hero-name">Shreya 🌸</div>
+
+  <p class="hero-subtitle">
+    "To my friend, my sister, my comfort zone, and one of the most talented people I know."
+  </p>
+
+  <span class="hero-cake">🎂</span>
+
+  <a href="#wish" class="btn-celebrate" onclick="fireCelebration()">
+    🎊 Celebrate Shreya
+  </a>
+
+  <div class="hero-countdown">
+    <div class="countdown-label">This special day is here!</div>
+    <div class="countdown-timer" id="countdown-timer">
+      <div class="countdown-unit"><span class="countdown-num" id="cd-d">00</span><span class="countdown-sub">Days</span></div>
+      <div class="countdown-unit"><span class="countdown-num" id="cd-h">00</span><span class="countdown-sub">Hours</span></div>
+      <div class="countdown-unit"><span class="countdown-num" id="cd-m">00</span><span class="countdown-sub">Mins</span></div>
+      <div class="countdown-unit"><span class="countdown-num" id="cd-s">00</span><span class="countdown-sub">Secs</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ABOUT ── -->
+<section id="about">
+  <div class="section-head reveal">
+    <span class="section-label">The Many Faces of</span>
+    <h2 class="section-title">Who Is <span>Shreya?</span></h2>
+    <p class="section-sub">A person of many beautiful dimensions — here's what makes her absolutely extraordinary.</p>
+  </div>
+  <div class="cards-grid">
+    <div class="about-card reveal">
+      <span class="card-emoji">📚</span>
+      <div class="card-title">The Topper</div>
+      <p class="card-desc">Academically brilliant, she leads with her mind and sets the bar for everyone around her.</p>
+      <span class="card-tag">Academic Star ⭐</span>
+    </div>
+    <div class="about-card reveal">
+      <span class="card-emoji">💃</span>
+      <div class="card-title">The Dancer</div>
+      <p class="card-desc">Her feet speak the language of passion. Every move she makes tells a beautiful story.</p>
+      <span class="card-tag">Born to Dance ✨</span>
+    </div>
+    <div class="about-card reveal">
+      <span class="card-emoji">🎤</span>
+      <div class="card-title">The Singer</div>
+      <p class="card-desc">Kannada melodies bloom when she sings — her voice carries culture, heart, and soul.</p>
+      <span class="card-tag">Soulful Voice 🎶</span>
+    </div>
+    <div class="about-card reveal">
+      <span class="card-emoji">🎵</span>
+      <div class="card-title">K-Pop Lover</div>
+      <p class="card-desc">BTS, BLACKPINK or any K-Pop drop — she lives for the beat, the art, the entire universe.</p>
+      <span class="card-tag">K-Pop Stan 💜</span>
+    </div>
+    <div class="about-card reveal">
+      <span class="card-emoji">💖</span>
+      <div class="card-title">Amazing Friend</div>
+      <p class="card-desc">Kind, supportive, caring and endlessly inspiring — she is what true friendship feels like.</p>
+      <span class="card-tag">My Sister 🌸</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── REASONS ── -->
+<section id="reasons">
+  <div class="section-head reveal">
+    <span class="section-label">Because she deserves to know</span>
+    <h2 class="section-title">Why Shreya Is <span>So Special</span></h2>
+    <p class="section-sub">Six reasons that barely scratch the surface of how wonderful she truly is.</p>
+  </div>
+  <div class="reasons-grid">
+    <div class="reason-card reveal">
+      <div class="reason-num">1</div>
+      <div class="reason-text"><strong>Always Motivates Others</strong>Even on her toughest days, she finds the energy to lift everyone else up. That's rare and beautiful.</div>
+    </div>
+    <div class="reason-card reveal">
+      <div class="reason-num">2</div>
+      <div class="reason-text"><strong>Works Hard for Her Dreams</strong>She never waits for luck — she builds her path, brick by brick, with determination and grace.</div>
+    </div>
+    <div class="reason-card reveal">
+      <div class="reason-num">3</div>
+      <div class="reason-text"><strong>Spreads Positivity</strong>Wherever she goes, the energy shifts. Her smile, her laugh, her presence — it's pure sunshine.</div>
+    </div>
+    <div class="reason-card reveal">
+      <div class="reason-num">4</div>
+      <div class="reason-text"><strong>Talented in So Many Ways</strong>Studies, dance, singing — she thrives in all worlds and makes it look effortlessly brilliant.</div>
+    </div>
+    <div class="reason-card reveal">
+      <div class="reason-num">5</div>
+      <div class="reason-text"><strong>Makes People Feel Valued</strong>She listens, remembers, and genuinely cares. She makes you feel seen in a world that often forgets.</div>
+    </div>
+    <div class="reason-card reveal">
+      <div class="reason-num">6</div>
+      <div class="reason-text"><strong>Balances Studies &amp; Passion</strong>A topper who also dances and sings? She's proof that you never have to choose just one dream.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── MEMORIES ── -->
+<section id="memories">
+  <div class="section-head reveal">
+    <span class="section-label">From the heart</span>
+    <h2 class="section-title">Memory <span>Wall</span></h2>
+    <p class="section-sub">Little words, big feelings — for the friend who means the world.</p>
+  </div>
+  <div class="timeline">
+    <div class="timeline-item reveal">
+      <div class="timeline-card">
+        <span class="timeline-emoji">🫂</span>
+        <div class="timeline-quote">"Thank you for being the friend who always understands without needing an explanation."</div>
+        <div class="timeline-year">A moment forever treasured</div>
+      </div>
+    </div>
+    <div class="timeline-item reveal">
+      <div class="timeline-card">
+        <span class="timeline-emoji">🔥</span>
+        <div class="timeline-quote">"Your determination inspires everyone around you. Watching you work hard makes us want to be better too."</div>
+        <div class="timeline-year">The drive that moves mountains</div>
+      </div>
+    </div>
+    <div class="timeline-item reveal">
+      <div class="timeline-card">
+        <span class="timeline-emoji">🌙</span>
+        <div class="timeline-quote">"May your smile never fade and your dreams always grow bigger than you could ever imagine."</div>
+        <div class="timeline-year">A birthday wish, always</div>
+      </div>
+    </div>
+    <div class="timeline-item reveal">
+      <div class="timeline-card">
+        <span class="timeline-emoji">🎶</span>
+        <div class="timeline-quote">"From Kannada melodies to K-Pop anthems — you carry every note with your whole heart."</div>
+        <div class="timeline-year">The music in your soul</div>
+      </div>
+    </div>
+    <div class="timeline-item reveal">
+      <div class="timeline-card">
+        <span class="timeline-emoji">💫</span>
+        <div class="timeline-quote">"You are not just brilliant in books — you are brilliant in kindness, in art, and in love."</div>
+        <div class="timeline-year">What makes a real Topper</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── LETTER ── -->
+<section id="letter">
+  <div class="section-head reveal">
+    <span class="section-label">Written with love</span>
+    <h2 class="section-title">A Special <span>Birthday Letter</span></h2>
+  </div>
+  <div class="letter-wrap reveal">
+    <span class="letter-salutation">Dear Shreya,</span>
+    <div class="letter-body">
+      <p>Happy Birthday! 🎂✨ Today the world is a little more beautiful because you exist in it.</p>
+      <p>You are not just a friend — you are a <span class="highlight">sister</span>. The kind of person who shows up not just in the good moments, but in every quiet, difficult, ordinary one too. And that is the rarest gift anyone can give.</p>
+      <p>Your <span class="highlight">dedication and hard work</span> as a topper show everyone around you what is truly possible when someone refuses to give up. But what moves us even more is that while you top every exam, you also find time to dance with your whole soul and sing Kannada songs that carry the warmth of home.</p>
+      <p>Whether you are lost in a <span class="highlight">K-Pop playlist</span>, perfecting a dance move at midnight, or studying for the next big exam — you bring joy, colour, and inspiration wherever you go.</p>
+      <p>May this year bring you <span class="highlight">happiness that overflows</span>, success that surprises even you, unforgettable memories, and everything you have ever quietly wished for.</p>
+      <p>Keep shining. Keep dancing. Keep singing. Keep being unapologetically, brilliantly, beautifully <strong>you</strong>.</p>
+    </div>
+    <span class="letter-sign">With all my love,<br>Your Friend 💜</span>
+    <span class="letter-heart">❤️</span>
+  </div>
+</section>
+
+<!-- ── WISH ── -->
+<section id="wish">
+  <div class="section-head reveal">
+    <span class="section-label">One more thing</span>
+    <h2 class="section-title">Send Your <span>Birthday Wishes!</span></h2>
+    <p class="section-sub">Click below to shower Shreya with all the celebration she deserves 🎊</p>
+  </div>
+  <div class="reveal">
+    <button class="wish-btn" onclick="sendWishes()">
+      🎁 Send Birthday Wishes to Shreya!
+    </button>
+    <div class="wish-msg" id="wish-msg">
+      <span>Wishes sent with love! 💌</span>
+      <span class="wish-emojis">🎂 🎉 💃 📚 🎵 💜</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-made">Made with love for Shreya ❤️</div>
+  <div class="footer-tagline">
+    "Happy Birthday, Topper! Keep dancing, keep singing, and keep shining." ✨<br>
+    May today and every day be as wonderful as you make everything around you.
+  </div>
+  <span class="footer-emojis">💃 📚 🎤 🎵 💜</span>
+  <div class="footer-hearts">
+    <span style="background:#c9b1e8;"></span>
+    <span style="background:#f5a7c7;"></span>
+    <span style="background:#d4a843;"></span>
+    <span style="background:#f5a7c7;"></span>
+    <span style="background:#c9b1e8;"></span>
+  </div>
+</footer>
+
+<script>
+// ── CONFETTI ENGINE ──
+const canvas=document.getElementById('confetti-canvas');
+const ctx=canvas.getContext('2d');
+canvas.width=window.innerWidth;canvas.height=window.innerHeight;
+window.addEventListener('resize',()=>{canvas.width=window.innerWidth;canvas.height=window.innerHeight;});
+
+const colors=['#c9b1e8','#f5a7c7','#d4a843','#ffe066','#9b72cf','#e06fa0','#f7e8b0'];
+let pieces=[];
+
+function Piece(){
+  this.x=Math.random()*canvas.width;
+  this.y=-20;
+  this.w=6+Math.random()*8;
+  this.h=10+Math.random()*8;
+  this.color=colors[Math.floor(Math.random()*colors.length)];
+  this.vx=(Math.random()-0.5)*3;
+  this.vy=2+Math.random()*3;
+  this.rot=Math.random()*360;
+  this.vrot=(Math.random()-0.5)*6;
+  this.life=1;
+}
+Piece.prototype.draw=function(){
+  ctx.save();
+  ctx.translate(this.x,this.y);
+  ctx.rotate(this.rot*Math.PI/180);
+  ctx.fillStyle=this.color;
+  ctx.globalAlpha=this.life;
+  ctx.fillRect(-this.w/2,-this.h/2,this.w,this.h);
+  ctx.restore();
+};
+Piece.prototype.update=function(){
+  this.x+=this.vx;this.y+=this.vy;
+  this.rot+=this.vrot;this.vy+=0.04;
+  if(this.y>canvas.height+20)this.life=0;
+};
+
+let confettiActive=false;
+let confettiFrame;
+function launchConfetti(n){
+  for(let i=0;i<n;i++) pieces.push(new Piece());
+  confettiActive=true;
+  if(!confettiFrame)animateConfetti();
+}
+function animateConfetti(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  pieces=pieces.filter(p=>p.life>0);
+  pieces.forEach(p=>{p.update();p.draw();});
+  if(pieces.length>0){confettiFrame=requestAnimationFrame(animateConfetti);}
+  else{confettiFrame=null;confettiActive=false;}
+}
+
+// ── FLOATING PARTICLES ──
+const particlesEl=document.getElementById('particles');
+const particleSet=['💜','🌸','✨','⭐','🎵','🎶','💖','🌟','🎀'];
+for(let i=0;i<22;i++){
+  const p=document.createElement('div');
+  p.className='particle';
+  p.textContent=particleSet[Math.floor(Math.random()*particleSet.length)];
+  p.style.left=Math.random()*100+'%';
+  p.style.animationDuration=(12+Math.random()*14)+'s';
+  p.style.animationDelay=(Math.random()*16)+'s';
+  p.style.fontSize=(0.9+Math.random()*1.0)+'rem';
+  particlesEl.appendChild(p);
+}
+
+// ── HERO SPARKLES ──
+const sparkCont=document.getElementById('sparkles-container');
+for(let i=0;i<30;i++){
+  const s=document.createElement('div');
+  s.className='sparkle';
+  s.style.left=Math.random()*100+'%';
+  s.style.top=Math.random()*100+'%';
+  s.style.animationDuration=(2+Math.random()*3)+'s';
+  s.style.animationDelay=(Math.random()*4)+'s';
+  s.style.width=s.style.height=(3+Math.random()*5)+'px';
+  const hue=Math.random()>0.5?'#c9b1e8':'#f5a7c7';
+  s.style.background=hue;
+  sparkCont.appendChild(s);
+}
+
+// ── SCROLL REVEAL ──
+const revealEls=document.querySelectorAll('.reveal');
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach((e,i)=>{
+    if(e.isIntersecting){
+      setTimeout(()=>e.target.classList.add('visible'),i*80);
+      obs.unobserve(e.target);
+    }
+  });
+},{threshold:0.15});
+revealEls.forEach(el=>obs.observe(el));
+
+// ── MUSIC NOTES on scroll ──
+let lastNote=0;
+window.addEventListener('scroll',()=>{
+  const now=Date.now();
+  if(now-lastNote<600)return;
+  lastNote=now;
+  const notes=['🎵','🎶','♪','♫','🎼'];
+  const n=document.createElement('div');
+  n.className='music-note';
+  n.textContent=notes[Math.floor(Math.random()*notes.length)];
+  n.style.left=(10+Math.random()*80)+'%';
+  n.style.bottom='80px';
+  n.style.animationDuration=(2.5+Math.random()*1.5)+'s';
+  document.body.appendChild(n);
+  setTimeout(()=>n.remove(),4000);
+});
+
+// ── COUNTDOWN ──
+function nextBirthday(){
+  const now=new Date();
+  // Shreya's birthday: June 19
+  let next=new Date(now.getFullYear(),5,19); // month is 0-indexed, so 5 = June
+  if(now>next) next=new Date(now.getFullYear()+1,5,19);
+  return next;
+}
+function updateCountdown(){
+  const now=new Date();
+  const today=new Date(now.getFullYear(),5,19);
+  const label=document.querySelector('.countdown-label');
+  // Check if today IS the birthday
+  if(now.getMonth()===5&&now.getDate()===19){
+    label.textContent='🎉 TODAY is Shreya\'s Birthday! 🎉';
+    document.getElementById('cd-d').textContent='00';
+    document.getElementById('cd-h').textContent='00';
+    document.getElementById('cd-m').textContent='00';
+    document.getElementById('cd-s').textContent='00';
+    return;
+  }
+  const target=nextBirthday();
+  const diff=target-now;
+  label.textContent='Counting down to June 19 🎂';
+  const d=Math.floor(diff/86400000);
+  const h=Math.floor((diff%86400000)/3600000);
+  const m=Math.floor((diff%3600000)/60000);
+  const s=Math.floor((diff%60000)/1000);
+  const fmt=n=>String(n).padStart(2,'0');
+  document.getElementById('cd-d').textContent=fmt(d);
+  document.getElementById('cd-h').textContent=fmt(h);
+  document.getElementById('cd-m').textContent=fmt(m);
+  document.getElementById('cd-s').textContent=fmt(s);
+}
+setInterval(updateCountdown,1000);
+updateCountdown();
+
+// ── CELEBRATE BTN ──
+function fireCelebration(){
+  launchConfetti(200);
+  setTimeout(()=>launchConfetti(150),600);
+  setTimeout(()=>launchConfetti(100),1200);
+}
+
+// ── SEND WISHES ──
+function sendWishes(){
+  fireCelebration();
+  const msg=document.getElementById('wish-msg');
+  msg.style.display='block';
+  // Spawn floating hearts
+  for(let i=0;i<12;i++){
+    setTimeout(()=>{
+      const h=document.createElement('div');
+      h.className='music-note';
+      h.textContent=['💜','🌸','💖','⭐','🎉'][Math.floor(Math.random()*5)];
+      h.style.left=(10+Math.random()*80)+'%';
+      h.style.bottom='60px';
+      h.style.animationDuration=(2+Math.random()*2)+'s';
+      h.style.fontSize=(1.5+Math.random())+'rem';
+      document.body.appendChild(h);
+      setTimeout(()=>h.remove(),4000);
+    },i*120);
+  }
+}
+
+// ── INITIAL LOAD CONFETTI ──
+window.addEventListener('load',()=>{
+  setTimeout(()=>launchConfetti(180),600);
+  setTimeout(()=>launchConfetti(120),1400);
+});
+</script>
+</body>
+</html>
