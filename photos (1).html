@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shreya's Photos 📸✨</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500&family=Satisfy&display=swap" rel="stylesheet">
+<style>
+:root{
+  --lavender:#c9b1e8;
+  --lavender-light:#ede5f8;
+  --lavender-dark:#9b72cf;
+  --pink:#f5a7c7;
+  --pink-light:#fde8f2;
+  --pink-dark:#e06fa0;
+  --gold:#d4a843;
+  --gold-light:#f7e8b0;
+  --gold-glow:#ffe066;
+  --offwhite:#fdf8ff;
+  --text-dark:#2d1b4e;
+  --text-mid:#6b4a8a;
+  --text-soft:#a07bc0;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'DM Sans',sans-serif;
+  background:var(--offwhite);
+  color:var(--text-dark);
+  overflow-x:hidden;
+}
+
+/* CONFETTI */
+#confetti-canvas{
+  position:fixed;top:0;left:0;
+  width:100%;height:100%;
+  pointer-events:none;z-index:1000;
+}
+
+/* PARTICLES */
+.particles{
+  position:fixed;top:0;left:0;
+  width:100%;height:100%;
+  pointer-events:none;z-index:1;overflow:hidden;
+}
+.particle{
+  position:absolute;font-size:1.2rem;
+  animation:floatUp linear infinite;opacity:0;
+}
+@keyframes floatUp{
+  0%{transform:translateY(100vh) rotate(0deg) scale(0.5);opacity:0;}
+  10%{opacity:0.8;}90%{opacity:0.6;}
+  100%{transform:translateY(-60px) rotate(720deg) scale(1.2);opacity:0;}
+}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  padding:14px 24px;
+  background:rgba(255,255,255,0.85);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(201,177,232,0.3);
+  display:flex;align-items:center;justify-content:space-between;
+}
+.nav-logo{
+  font-family:'Satisfy',cursive;font-size:1.4rem;
+  color:var(--lavender-dark);letter-spacing:1px;text-decoration:none;
+}
+.nav-links{display:flex;gap:20px;}
+.nav-links a{
+  font-size:0.82rem;font-weight:500;color:var(--text-mid);
+  text-decoration:none;letter-spacing:0.5px;transition:color 0.2s;
+}
+.nav-links a:hover,.nav-links a.active{color:var(--lavender-dark);}
+
+/* HERO */
+#hero{
+  min-height:60vh;position:relative;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;padding:120px 24px 60px;
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 10%,rgba(237,229,248,0.9) 0%,transparent 60%),
+    radial-gradient(ellipse 70% 50% at 80% 80%,rgba(253,232,242,0.9) 0%,transparent 60%),
+    radial-gradient(ellipse 60% 40% at 60% 20%,rgba(247,232,176,0.4) 0%,transparent 50%),
+    var(--offwhite);
+  overflow:hidden;
+}
+.hero-sparkles{position:absolute;inset:0;pointer-events:none;overflow:hidden;}
+.sparkle{
+  position:absolute;width:6px;height:6px;border-radius:50%;
+  background:var(--gold-glow);animation:sparkle-anim ease-in-out infinite;
+}
+@keyframes sparkle-anim{
+  0%,100%{transform:scale(0) rotate(0deg);opacity:0;}
+  50%{transform:scale(1) rotate(180deg);opacity:1;}
+}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:linear-gradient(135deg,rgba(201,177,232,0.3),rgba(245,167,199,0.3));
+  border:1px solid rgba(201,177,232,0.5);border-radius:999px;
+  padding:8px 20px;font-size:0.78rem;font-weight:500;
+  color:var(--text-mid);letter-spacing:2px;text-transform:uppercase;
+  margin-bottom:20px;animation:fadeInDown 1s ease both;
+}
+.hero-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2.6rem,9vw,6rem);font-weight:900;line-height:1.05;
+  background:linear-gradient(135deg,var(--lavender-dark) 0%,var(--pink-dark) 50%,var(--gold) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  margin-bottom:8px;animation:fadeInDown 1s 0.2s ease both;opacity:0;
+}
+.hero-name{
+  font-family:'Satisfy',cursive;font-size:clamp(1.6rem,4vw,2.8rem);
+  color:var(--lavender-dark);
+  text-shadow:0 0 30px rgba(155,114,207,0.4);
+  margin-bottom:16px;animation:fadeInDown 1s 0.35s ease both;opacity:0;
+}
+.hero-sub{
+  font-size:clamp(0.9rem,2vw,1.1rem);color:var(--text-mid);
+  font-style:italic;max-width:500px;line-height:1.7;
+  animation:fadeInDown 1s 0.5s ease both;opacity:0;
+}
+.hero-cam{
+  font-size:4rem;display:block;margin:20px 0 0;
+  animation:camPulse 2s ease-in-out infinite,fadeInDown 1s 0.6s ease both;
+  opacity:0;filter:drop-shadow(0 0 20px rgba(212,168,67,0.5));
+}
+@keyframes camPulse{
+  0%,100%{transform:scale(1) rotate(-3deg);}
+  50%{transform:scale(1.08) rotate(3deg);}
+}
+@keyframes fadeInDown{
+  from{transform:translateY(-30px);opacity:0;}
+  to{transform:translateY(0);opacity:1;}
+}
+
+/* PHOTOS SECTION */
+#photos{
+  padding:80px 24px 100px;
+  background:
+    radial-gradient(ellipse 60% 40% at 90% 10%,rgba(253,232,242,0.6) 0%,transparent 60%),
+    radial-gradient(ellipse 50% 40% at 10% 80%,rgba(237,229,248,0.5) 0%,transparent 60%),
+    var(--offwhite);
+}
+.section-head{text-align:center;margin-bottom:52px;}
+.section-label{
+  display:inline-block;font-size:0.72rem;letter-spacing:4px;
+  text-transform:uppercase;color:var(--lavender-dark);margin-bottom:12px;font-weight:500;
+}
+.section-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(1.8rem,5vw,3rem);font-weight:700;
+  color:var(--text-dark);line-height:1.2;
+}
+.section-title span{
+  background:linear-gradient(135deg,var(--lavender-dark),var(--pink-dark));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+
+/* MASONRY GRID */
+.photo-grid{
+  columns:3 260px;column-gap:18px;
+  max-width:1100px;margin:0 auto;
+}
+.photo-card{
+  break-inside:avoid;margin-bottom:18px;
+  border-radius:4px;
+  background:white;
+  padding:10px 10px 44px;
+  box-shadow:0 6px 28px rgba(155,114,207,0.12),0 2px 6px rgba(0,0,0,0.07);
+  cursor:pointer;
+  transform:rotate(var(--tilt));
+  transition:transform 0.35s cubic-bezier(0.34,1.56,0.64,1),box-shadow 0.3s;
+  position:relative;
+  opacity:0;
+  animation:revealCard 0.55s ease forwards;
+}
+.photo-card:hover{
+  transform:rotate(0deg) scale(1.04) translateY(-8px);
+  box-shadow:0 20px 56px rgba(155,114,207,0.25);
+  z-index:10;
+}
+@keyframes revealCard{
+  from{opacity:0;transform:rotate(var(--tilt)) translateY(30px);}
+  to{opacity:1;transform:rotate(var(--tilt)) translateY(0);}
+}
+.photo-card img{
+  width:100%;display:block;
+  border-radius:2px;
+  object-fit:cover;
+}
+.photo-card .polaroid-label{
+  position:absolute;bottom:6px;left:0;right:0;
+  text-align:center;
+  font-family:'Satisfy',cursive;
+  font-size:1rem;color:var(--text-mid);
+  padding:0 8px;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+
+/* LIGHTBOX */
+#lightbox{
+  display:none;position:fixed;inset:0;z-index:500;
+  background:rgba(20,8,40,0.93);backdrop-filter:blur(10px);
+  align-items:center;justify-content:center;padding:20px;
+}
+#lightbox.open{display:flex;}
+.lb-inner{
+  position:relative;
+  max-width:88vw;max-height:88vh;
+  background:white;border-radius:24px;overflow:hidden;
+  box-shadow:0 0 0 4px rgba(201,177,232,0.35),0 32px 80px rgba(0,0,0,0.45);
+  animation:lbPop 0.3s cubic-bezier(0.34,1.56,0.64,1);
+}
+@keyframes lbPop{from{transform:scale(0.75);opacity:0;}to{transform:scale(1);opacity:1;}}
+.lb-inner img{
+  display:block;max-width:88vw;max-height:80vh;
+  object-fit:contain;
+}
+.lb-caption{
+  padding:14px 22px 16px;
+  font-family:'Satisfy',cursive;font-size:1.15rem;
+  color:var(--text-mid);text-align:center;
+  border-top:1px solid rgba(201,177,232,0.2);
+  background:white;
+}
+.lb-close{
+  position:absolute;top:12px;right:14px;
+  width:34px;height:34px;border-radius:50%;
+  background:rgba(255,255,255,0.88);
+  border:1px solid rgba(201,177,232,0.4);
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;font-size:1rem;color:var(--text-mid);
+  transition:background 0.2s,transform 0.2s;
+}
+.lb-close:hover{background:var(--lavender-light);transform:scale(1.1);}
+.lb-nav{
+  position:absolute;top:50%;transform:translateY(-50%);
+  width:40px;height:40px;border-radius:50%;
+  background:rgba(255,255,255,0.88);
+  border:1px solid rgba(201,177,232,0.4);
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;font-size:1.2rem;color:var(--text-mid);
+  transition:background 0.2s,transform 0.2s;
+  z-index:10;
+}
+.lb-nav:hover{background:var(--lavender-light);}
+.lb-prev{left:-18px;}.lb-next{right:-18px;}
+
+/* FOOTER */
+footer{
+  background:linear-gradient(135deg,#1a0a2e,#2d1b4e);
+  color:white;text-align:center;padding:52px 24px;
+}
+.footer-made{font-family:'Satisfy',cursive;font-size:1.4rem;margin-bottom:12px;color:var(--gold-light);}
+.footer-tagline{font-size:0.9rem;color:rgba(255,255,255,0.55);letter-spacing:1px;line-height:1.7;}
+.footer-emojis{font-size:1.8rem;letter-spacing:6px;display:block;margin-top:16px;}
+.footer-hearts{display:flex;justify-content:center;gap:12px;margin-top:24px;}
+.footer-hearts span{width:10px;height:10px;border-radius:50%;display:inline-block;}
+
+/* MUSIC NOTE */
+.music-note{
+  position:fixed;font-size:1.4rem;pointer-events:none;
+  animation:musicFloat linear both;opacity:0;z-index:2;
+}
+@keyframes musicFloat{
+  0%{opacity:0;transform:translateY(0) rotate(-10deg) scale(0.5);}
+  15%{opacity:0.8;}85%{opacity:0.6;}
+  100%{opacity:0;transform:translateY(-240px) rotate(20deg) scale(1.2);}
+}
+
+@media(max-width:640px){
+  nav .nav-links{display:none;}
+  .photo-grid{columns:2 150px;}
+  .lb-prev{left:-12px;}.lb-next{right:-12px;}
+}
+@media(max-width:380px){.photo-grid{columns:1;}}
+</style>
+</head>
+<body>
+
+<canvas id="confetti-canvas"></canvas>
+<div class="particles" id="particles"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">✨ Shreya</a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="index.html#letter">Letter</a>
+    <a href="photos.html" class="active">📸 Photos</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-sparkles" id="sparkles-container"></div>
+  <div class="hero-badge">📷 &nbsp; Moments to remember forever &nbsp; 📷</div>
+  <h1 class="hero-title">Our Photos</h1>
+  <div class="hero-name">Shreya 🌸</div>
+  <p class="hero-sub">"Every picture is a little forever."</p>
+  <span class="hero-cam">📸</span>
+</section>
+
+<!-- PHOTOS -->
+<section id="photos">
+  <div class="section-head">
+    <span class="section-label">Captured with love</span>
+    <h2 class="section-title">Beautiful <span>Memories</span></h2>
+  </div>
+
+  <div class="photo-grid" id="photo-grid">
+
+    <!--
+    ============================================================
+      HOW TO ADD YOUR PHOTOS:
+      1. Upload your image files to your GitHub repo
+         (same folder as this file, e.g. img/photo1.jpg)
+      2. Copy one <div class="photo-card"> block below
+      3. Change src="img/photo1.jpg" to your image path
+      4. Change the label text inside .polaroid-label
+      5. Repeat for each photo!
+    ============================================================
+
+    EXAMPLE CARDS — replace src and label with your own:
+    -->
+
+    <div class="photo-card" style="--tilt:-2deg;animation-delay:0s">
+      <img src="img/photo1.jpg" alt="Shreya">
+      <div class="polaroid-label">Shreya 💜</div>
+    </div>
+
+    <div class="photo-card" style="--tilt:1.5deg;animation-delay:0.07s">
+      <img src="img/photo2.jpg" alt="Shreya">
+      <div class="polaroid-label">My favourite ✨</div>
+    </div>
+
+    <div class="photo-card" style="--tilt:-1deg;animation-delay:0.14s">
+      <img src="img/photo3.jpg" alt="Shreya">
+      <div class="polaroid-label">Always smiling 🌸</div>
+    </div>
+
+    <div class="photo-card" style="--tilt:2.5deg;animation-delay:0.21s">
+      <img src="img/photo4.jpg" alt="Shreya">
+      <div class="polaroid-label">Pure joy 🎉</div>
+    </div>
+
+    <div class="photo-card" style="--tilt:-1.5deg;animation-delay:0.28s">
+      <img src="img/photo5.jpg" alt="Shreya">
+      <div class="polaroid-label">Queen 👑</div>
+    </div>
+
+    <div class="photo-card" style="--tilt:1deg;animation-delay:0.35s">
+      <img src="img/photo6.jpg" alt="Shreya">
+      <div class="polaroid-label">The dancer 💃</div>
+    </div>
+
+    <!-- ADD MORE CARDS HERE — just copy any block above and change src + label -->
+
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div id="lightbox">
+  <div class="lb-inner" id="lb-inner">
+    <div class="lb-nav lb-prev" onclick="lbNav(-1)">‹</div>
+    <div class="lb-nav lb-next" onclick="lbNav(1)">›</div>
+    <div class="lb-close" onclick="closeLb()">✕</div>
+    <img id="lb-img" src="" alt="Shreya">
+    <div class="lb-caption" id="lb-cap"></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-made">Made with love for Shreya Maa ❤️</div>
+  <div class="footer-tagline">
+    "Happy Birthday, Topper! Keep dancing, keep singing, and keep shining." ✨<br>
+    May today and every day be as wonderful as you make everything around you.
+  </div>
+  <span class="footer-emojis">💃 📸 🎤 🎵 💜</span>
+  <div class="footer-hearts">
+    <span style="background:#c9b1e8;"></span>
+    <span style="background:#f5a7c7;"></span>
+    <span style="background:#d4a843;"></span>
+    <span style="background:#f5a7c7;"></span>
+    <span style="background:#c9b1e8;"></span>
+  </div>
+</footer>
+
+<script>
+// CONFETTI
+const canvas=document.getElementById('confetti-canvas');
+const ctx=canvas.getContext('2d');
+canvas.width=window.innerWidth;canvas.height=window.innerHeight;
+window.addEventListener('resize',()=>{canvas.width=window.innerWidth;canvas.height=window.innerHeight;});
+const colors=['#c9b1e8','#f5a7c7','#d4a843','#ffe066','#9b72cf','#e06fa0','#f7e8b0'];
+let pieces=[];
+function Piece(){
+  this.x=Math.random()*canvas.width;this.y=-20;
+  this.w=6+Math.random()*8;this.h=10+Math.random()*8;
+  this.color=colors[Math.floor(Math.random()*colors.length)];
+  this.vx=(Math.random()-0.5)*3;this.vy=2+Math.random()*3;
+  this.rot=Math.random()*360;this.vrot=(Math.random()-0.5)*6;this.life=1;
+}
+Piece.prototype.draw=function(){
+  ctx.save();ctx.translate(this.x,this.y);ctx.rotate(this.rot*Math.PI/180);
+  ctx.fillStyle=this.color;ctx.globalAlpha=this.life;
+  ctx.fillRect(-this.w/2,-this.h/2,this.w,this.h);ctx.restore();
+};
+Piece.prototype.update=function(){
+  this.x+=this.vx;this.y+=this.vy;this.rot+=this.vrot;this.vy+=0.04;
+  if(this.y>canvas.height+20)this.life=0;
+};
+let cf;
+function launchConfetti(n){
+  for(let i=0;i<n;i++)pieces.push(new Piece());
+  if(!cf)animC();
+}
+function animC(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  pieces=pieces.filter(p=>p.life>0);
+  pieces.forEach(p=>{p.update();p.draw();});
+  cf=pieces.length>0?requestAnimationFrame(animC):null;
+}
+
+// PARTICLES
+const pe=document.getElementById('particles');
+['💜','🌸','✨','⭐','📸','🎵','💖','🌟','🎀','💃'].forEach((_,i)=>{
+  const p=document.createElement('div');p.className='particle';
+  p.textContent=['💜','🌸','✨','⭐','📸','🎵','💖','🌟','🎀','💃'][Math.floor(Math.random()*10)];
+  p.style.left=Math.random()*100+'%';
+  p.style.animationDuration=(12+Math.random()*14)+'s';
+  p.style.animationDelay=(Math.random()*16)+'s';
+  p.style.fontSize=(0.9+Math.random())+'rem';
+  pe.appendChild(p);
+});
+for(let i=10;i<22;i++){
+  const p=document.createElement('div');p.className='particle';
+  p.textContent=['💜','🌸','✨','⭐','📸','🎵','💖','🌟','🎀','💃'][Math.floor(Math.random()*10)];
+  p.style.left=Math.random()*100+'%';
+  p.style.animationDuration=(12+Math.random()*14)+'s';
+  p.style.animationDelay=(Math.random()*16)+'s';
+  p.style.fontSize=(0.9+Math.random())+'rem';
+  pe.appendChild(p);
+}
+
+// SPARKLES
+const sc=document.getElementById('sparkles-container');
+for(let i=0;i<30;i++){
+  const s=document.createElement('div');s.className='sparkle';
+  s.style.left=Math.random()*100+'%';s.style.top=Math.random()*100+'%';
+  s.style.animationDuration=(2+Math.random()*3)+'s';s.style.animationDelay=(Math.random()*4)+'s';
+  s.style.width=s.style.height=(3+Math.random()*5)+'px';
+  s.style.background=Math.random()>0.5?'#c9b1e8':'#f5a7c7';
+  sc.appendChild(s);
+}
+
+// MUSIC NOTES
+let lastNote=0;
+window.addEventListener('scroll',()=>{
+  const now=Date.now();if(now-lastNote<600)return;lastNote=now;
+  const n=document.createElement('div');n.className='music-note';
+  n.textContent=['🎵','🎶','♪','♫'][Math.floor(Math.random()*4)];
+  n.style.left=(10+Math.random()*80)+'%';n.style.bottom='80px';
+  n.style.animationDuration=(2.5+Math.random()*1.5)+'s';
+  document.body.appendChild(n);setTimeout(()=>n.remove(),4000);
+});
+
+// LIGHTBOX
+const cards=[...document.querySelectorAll('.photo-card')];
+let lbIdx=0;
+cards.forEach((c,i)=>{
+  c.addEventListener('click',()=>openLb(i));
+});
+function openLb(i){
+  lbIdx=i;
+  const img=cards[i].querySelector('img');
+  const cap=cards[i].querySelector('.polaroid-label');
+  document.getElementById('lb-img').src=img.src;
+  document.getElementById('lb-img').alt=img.alt;
+  document.getElementById('lb-cap').textContent=cap?cap.textContent:'';
+  document.getElementById('lightbox').classList.add('open');
+}
+function closeLb(){document.getElementById('lightbox').classList.remove('open');}
+function lbNav(dir){
+  lbIdx=(lbIdx+dir+cards.length)%cards.length;
+  openLb(lbIdx);
+}
+document.getElementById('lightbox').addEventListener('click',e=>{
+  if(e.target===document.getElementById('lightbox'))closeLb();
+});
+document.addEventListener('keydown',e=>{
+  if(!document.getElementById('lightbox').classList.contains('open'))return;
+  if(e.key==='Escape')closeLb();
+  if(e.key==='ArrowLeft')lbNav(-1);
+  if(e.key==='ArrowRight')lbNav(1);
+});
+
+// LOAD
+window.addEventListener('load',()=>{
+  setTimeout(()=>launchConfetti(150),500);
+  setTimeout(()=>launchConfetti(100),1200);
+});
+</script>
+</body>
+</html>
