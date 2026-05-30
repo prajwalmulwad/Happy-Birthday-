@@ -290,10 +290,39 @@ footer{
   <div class="nav-links">
     <a href="index.html">Home</a>
     <a href="index.html#letter">Letter</a>
-    <a href="upi://pay?pa=p.mulwad@ptyes&pn=Prajwal Mulwad&am=50&cu=INR">
-    ☕ Buy Me a Coffee (₹40)
-</a>
     
+    <div class="coffee-buttons">
+    <a href="upi://pay?pa=p.mulwad@ptyes&pn=Prajwal Mulwad&am=50&cu=INR" class="btn">
+        ☕ Coffee ₹50
+    </a>
+
+    <a href="upi://pay?pa=p.mulwad@ptyes&pn=Prajwal Mulwad&am=250&cu=INR" class="btn">
+        🍕 Pizza ₹250
+    </a>
+</div>
+
+<style>
+.coffee-buttons{
+    display:flex;
+    gap:15px;
+    justify-content:center;
+    flex-wrap:wrap;
+}
+
+.btn{
+    padding:12px 24px;
+    background:#ffb703;
+    color:black;
+    text-decoration:none;
+    border-radius:10px;
+    font-weight:bold;
+    transition:0.3s;
+}
+
+.btn:hover{
+    transform:translateY(-2px);
+}
+</style>
   </div>
 </nav>
 
